@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',  # данные при входе сохранняется на время
     'django.contrib.messages',  # сообщения о действиях
     'django.contrib.staticfiles',  # логика для работы с html, css и т.д.
-    'blog',
+    'books',
 ]
 
 # проверки на авторизацию, на аккаунт
