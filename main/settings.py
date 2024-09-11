@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',  # сообщения о действиях
     'django.contrib.staticfiles',  # логика для работы с html, css и т.д.
     'books',
+    'clothes',
 ]
 
 # проверки на авторизацию, на аккаунт

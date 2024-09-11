@@ -30,3 +30,12 @@ class Book(models.Model):
 
     def __str__(self):
         return f'{self.title} - {self.author}'
+
+
+class Review(models.Model):
+    book_name = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_review')
+    review_text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.book_name} - {self.created_at}'

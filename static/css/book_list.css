@@ -1,0 +1,10 @@
+.square_mom {
+    background-color: darkslategray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 20vh;
+    text-align: center;
+    gap: 10px;
+}

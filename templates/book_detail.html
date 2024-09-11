@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% include 'header.html' %}
 
 <h1>{{ book_id.title }} {{ book_id.author }}</h1>
 <img src="{{ book_id.cover.url }}" alt="">
@@ -14,5 +8,9 @@
 <a href="{{ book_id.publisher_url }}">Перейти на сайт</a>
 <p>{{ book_id.publisher_email }}</p>
 
-</body>
-</html>
+{% for j in book_id.book_review.all %}
+    <h3>{{ j.review_text }}</h3>
+    <p>{{ j.created_at }}</p>
+{% endfor %}
+
+{% include 'footer.html' %}

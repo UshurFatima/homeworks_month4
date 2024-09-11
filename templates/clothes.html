@@ -1,0 +1,28 @@
+{% include 'header.html' %}
+<br><br><br>
+<h1>Одежда для детей</h1>
+{% for i in kids_cloth %}
+<h2>
+    {{  i.name }}
+</h2>
+{% endfor %}
+<br>
+
+<h1>Одежда для взрослых</h1>
+{% for i in adults_cloth %}
+<h2>
+    {{  i.name }}
+</h2>
+{% endfor %}
+<br>
+
+<h1>Одежда для пенсионеров</h1>
+{% for i in pensioners_cloth %}
+<h2>
+    {{  i.name }}
+</h2>
+{% endfor %}
+
+
+
+{% include 'footer.html' %}
