@@ -1,0 +1,19 @@
+{% load static %}
+{% include '../header.html' %}
+<link rel="stylesheet" href="{% static 'css/create_form.css' %}">
+<br><br>
+
+<form action='/add_book/' method="POST" enctype="multipart/form-data" class="decor">
+<div class="form-left-decoration"></div>
+<div class="form-right-decoration"></div>
+<div class="circle"></div>
+<div class="form-inner">
+<h3>Добавить книгу</h3>
+{% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" value="Завершить">
+</div>
+</form>
+
+
+{% include '../footer.html' %}
