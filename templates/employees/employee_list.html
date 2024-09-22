@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список сотрудников</title>
+</head>
+<body>
+
+<div>
+    <ol>
+        {% for i in object_list %}
+            <li>
+            <h1>Имя - {{ i.first_name }}</h1>
+            <p>Почта - {{ i.email }}</p>
+            <p>Ник - {{ i.username }}</p>
+            <p>Возраст - {{ i.age }}</p>
+            <p>Стаж - {{ i.level }}</p>
+            {% if i.salary %}
+                <p>Ваша зарплата - ${{ i.salary }}</p>
+            {% else %}
+                <p>Зарплата не определена</p>
+            {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+
+<form action="{% url 'employees:login' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Выйти</button>
+</form>
+
+</body>
+</html>

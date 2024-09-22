@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',  # логика для работы с html, css и т.д.
     'books',
     'clothes',
+    'employees',
 ]
 
 # проверки на авторизацию, на аккаунт
@@ -42,6 +43,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'employees.middleware.SalaryMiddleware',
 ]
 
 ROOT_URLCONF = 'main.urls'
