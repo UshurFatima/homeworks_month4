@@ -1,10 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views import generic
 from datetime import datetime
+
+from django.views.decorators.cache import cache_page
+
 from . import models, forms
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class SearchView(generic.ListView):
     template_name = 'book_list.html'
     context_object_name = 'book_object'
@@ -20,10 +26,13 @@ class SearchView(generic.ListView):
         return context
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class AddBookView(generic.CreateView):
     template_name = 'crud/add_book.html'
     form_class = forms.BookForm
-    success_url = '/book_list/'
+
+    def get_success_url(self):
+        return reverse('books:book_list')
 
     def form_valid(self, form):
         print(form.cleaned_data)  # сохраняем информацию из формы
@@ -48,6 +57,7 @@ class AddBookView(generic.CreateView):
 #     )
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class BookListDeleteView(generic.ListView):
     template_name = 'crud/book_list_delete.html'
     context_object_name = 'book_object'
@@ -57,6 +67,7 @@ class BookListDeleteView(generic.ListView):
         return self.model.objects.all().order_by('-id')
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class BookDropView(generic.DeleteView):
     template_name = 'crud/confirm_delete.html'
     success_url = '/book_list_delete/'
@@ -84,6 +95,7 @@ class BookDropView(generic.DeleteView):
 #     return HttpResponse('Книга была успешно удалена! <a href = "/book_list/">На список книг</a>')
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class BookListEditView(generic.ListView):
     template_name = 'crud/book_list_edit.html'
     context_object_name = 'book_object'
@@ -93,6 +105,7 @@ class BookListEditView(generic.ListView):
         return self.model.objects.all().order_by('-id')
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class UpdateBookView(generic.UpdateView):
     template_name = 'crud/update_book.html'
     form_class = forms.BookForm
@@ -135,14 +148,14 @@ class UpdateBookView(generic.UpdateView):
 #         }
 #     )
 
-
+@method_decorator(cache_page(60*15), name='dispatch')
 class BookListView(generic.ListView):
     template_name = 'book_list.html'
     context_object_name = 'book_object'
     model = models.Book
 
     def get_queryset(self):  # метод, отвечающий за вывод данных, только общий список
-        return self.model.objects.all().order_by('-id')
+        return self.model.objects.prefetch_related('book_review').all().order_by('-id')
 
 
 # def book_list_view(request):
@@ -157,6 +170,7 @@ class BookListView(generic.ListView):
 #         )
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class BookDetailView(generic.DetailView):
     template_name = 'book_detail.html'
     context_object_name = 'book_id'

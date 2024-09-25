@@ -1,6 +1,7 @@
 from pathlib import Path
 # для работы с директориями (подключение и использование, обычно .env)
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,15 +10,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 # like bot token
-SECRET_KEY = 'django-insecure-*5-#5ux83t45x^(456q&5&4f_a2fo%+m)c0bgcobonob6lv&$7'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # чтоб видеть ошибки, когда выкладываем сайт - False
-DEBUG = True
+if os.environ.get('DEBUG') == 'on':
+    DEBUG = True
+else:
+    DEBUG = False
 # куда выкладываем сайт
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -32,6 +37,7 @@ INSTALLED_APPS = [
     'books',
     'clothes',
     'employees',
+    'debug_toolbar',
 ]
 
 # проверки на авторизацию, на аккаунт
@@ -44,7 +50,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'employees.middleware.SalaryMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'main.urls'
 

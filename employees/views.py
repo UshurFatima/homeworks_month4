@@ -5,11 +5,14 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
 # чтобы данные передавались не через урлы
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy  # для логаута
 from . import models, middleware, forms
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class RegistrationView(CreateView):
     template_name = 'employees/register.html'
     form_class = forms.ApplicationForm
@@ -30,6 +33,7 @@ class RegistrationView(CreateView):
         return response
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class AuthLoginView(LoginView):
     template_name = 'employees/login.html'
     form_class = AuthenticationForm
@@ -39,10 +43,12 @@ class AuthLoginView(LoginView):
         return reverse('employees:employee_list')
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class AuthLogoutView(LogoutView):
     next_page = reverse_lazy('employees:login')
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class EmployeeListView(ListView):
     template_name = 'employees/employee_list.html'
     model = models.JobApplication

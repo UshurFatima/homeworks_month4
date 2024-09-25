@@ -5,7 +5,7 @@
     <h1>Вы точно хотите удалить эту книгу</h1>
     {% csrf_token %}
     <button type="submit">ДА</button>
-    <button><a href="{% url 'book_list_delete' %}">Назад</a></button>
+    <button><a href="{% url 'books:book_list_delete' %}">Назад</a></button>
 </form>
 
 {% include '../footer.html' %}
