@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Комментарий</title>
+</head>
+<body>
+
+<form action="/review/" method="POST" enctype="multipart/form-data">
+    <h3>Добавить комментарий</h3>
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" value="Отправить">
+</form>
+
+
+</body>
+</html>

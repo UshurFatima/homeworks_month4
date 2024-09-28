@@ -8,6 +8,8 @@ urlpatterns = [
     path('', include('books.urls')),
     path('', include('clothes.urls')),
     path('', include('employees.urls')),
+    path('', include('parser_app.urls')),
+    path('', include('tv_show.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

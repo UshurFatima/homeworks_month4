@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete movies</title>
+</head>
+<body>
+
+<form method="POST" enctype="multipart/form-data">
+    <h1>Вы точно хотите удалить этот фильм?</h1>
+    {% csrf_token %}
+    <button type="submit">ДА</button>
+    <button><a href="{% url 'movies:movie_list' %}">Назад</a></button>
+</form>
+
+</body>
+</html>

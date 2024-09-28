@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'clothes',
     'employees',
     'debug_toolbar',
+    'parser_app',
+    'tv_show',
 ]
 
 # проверки на авторизацию, на аккаунт

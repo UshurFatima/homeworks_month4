@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ movie_id.title }}</title>
+</head>
+<body>
+
+<h1>{{ movie_id.title }}</h1>
+<img src="{{ movie_id.image.url }}" alt="" width="300" height="400">
+<p>{{ movie_id.description }}</p>
+<p>{{ movie_id.genre }}</p>
+<p>{{ movie_id.price }} {{ movie_id.created_at }}</p>
+<br>
+
+{% for j in movie_id.movie.all %}
+    <center>
+    <h3>{{ j.user }}</h3>
+    <h4>{{ j.comment }}</h4>
+    <p>{{ j.rating }} stars</p>
+    <p>{{ j.created_at }}</p>
+    </center>
+{% endfor %}
+
+<a href="/review/">Добавить комментарий</a>
+
+</body>
+</html>

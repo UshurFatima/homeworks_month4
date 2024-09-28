@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add movies</title>
+</head>
+<body>
+
+<form action="/movies/add/" method="POST" enctype="multipart/form-data">
+    <h3>Добавить фильм</h3>
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" value="Завершить">
+</form>
+
+</body>
+</html>

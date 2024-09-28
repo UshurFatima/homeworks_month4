@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thriller</title>
+</head>
+<body>
+
+<h1>Thriller films</h1>
+{% for i in thriller %}
+    <h3>{{ i.title }}</h3>
+    <img src="{{ i.image.url }}" alt="">
+{% endfor %}
+
+</body>
+</html>
